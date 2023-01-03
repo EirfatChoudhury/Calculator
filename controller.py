@@ -7,7 +7,7 @@ class Controller():
         self.view = View(self)
     
     def main(self):
-        pass
+        self.view.main()
 
 if __name__ == "__main__":
     app = Controller()
