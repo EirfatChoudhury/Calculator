@@ -5,6 +5,14 @@ class View(tk.Tk):
 
     # Class variables
     PAD = 10
+    MAX_BUTTONS_PER_ROW = 4
+    BUTTONS_LIST = [
+        "%", "CE", "C", "/",
+        "7", "8", "9", "X",
+        "4", "5", "6", "-",
+        "1", "2", "3", "+",
+        ".", "0", "Back", "=" 
+    ]
 
     def __init__(self, controller):
         super().__init__() # Calling the constructor method of the parent class - self=tk.Tk()
@@ -15,6 +23,7 @@ class View(tk.Tk):
 
         self._make_main_frame() # Creation of main frame
         self._make_entry() # Creation of entry widget onto main frame
+        self._make_buttons()
     
     def main(self):
         """Creation of the window screen"""
@@ -28,4 +37,19 @@ class View(tk.Tk):
     def _make_entry(self): # Pre-fixed with an _ to show it will only be used as a function within the view class
         """Creation and packing of an entry into the main frame"""
         entry = ttk.Entry(self.main_frame, justify="right", textvariable=self.value_var) # Creation of an entry widget to be shown on the main frame, starting the user's cursor from the right, and with a textvariable of value_var
-        entry.pack() # Packing entry widget
+        entry.pack(ipady=self.PAD, fill="x") # Packing entry widget
+    
+    def _make_buttons(self):
+        """Creation of calculator buttons"""
+        count = 4
+        for button in self.BUTTONS_LIST:
+            if count == self.MAX_BUTTONS_PER_ROW:
+                frame = ttk.Frame(self.main_frame)
+                frame.pack()
+                count = 0
+
+            btn = ttk.Button(frame, text=button)
+            btn.pack(ipady=self.PAD, side="left")
+            count += 1
+
+        # For every 4 buttons packed, we want to create a new frame
