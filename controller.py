@@ -16,6 +16,3 @@ class Controller():
 if __name__ == "__main__":
     app = Controller() # Creating a controller object
     app.main() # Running main function of controller
-
-
-# IMPLEMENT BACK BUTTON FUNCTION AND PERCENTAGE FUNCTION, ALSO IMPLEMENT TYPING FUNCTION
