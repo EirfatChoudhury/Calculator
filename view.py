@@ -7,11 +7,11 @@ class View(tk.Tk):
     PAD = 10
     MAX_BUTTONS_PER_ROW = 4
     BUTTONS_LIST = [
-        "%", "CE", "C", "/",
-        "7", "8", "9", "X",
-        "4", "5", "6", "-",
-        "1", "2", "3", "+",
-        ".", "0", "Back", "=" 
+        "%", "+/-", "C", "/",
+        7, 8, 9, "*",
+        4, 5, 6, "-",
+        1, 2, 3, "+",
+        ".", 0, "Back", "=" 
     ]
 
     def __init__(self, controller):
@@ -48,8 +48,9 @@ class View(tk.Tk):
                 frame.pack()
                 count = 0
 
-            btn = ttk.Button(frame, text=button) # Adding buttons from the BUTTONS_LIST and increasing count each time
+            btn = ttk.Button(frame, text=button, 
+            command=lambda button=button: self.controller.button_clicked(button)) # Adding buttons from the BUTTONS_LIST, linking it to the button_clicked function on controller
             btn.pack(ipady=self.PAD, side="left")
-            count += 1
+            count += 1 # Increasing count each time
 
         # For every 4 buttons packed, we want to create a new frame
