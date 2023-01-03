@@ -39,16 +39,16 @@ class View(tk.Tk):
         entry = ttk.Entry(self.main_frame, justify="right", textvariable=self.value_var) # Creation of an entry widget to be shown on the main frame, starting the user's cursor from the right, and with a textvariable of value_var
         entry.pack(ipady=self.PAD, fill="x") # Packing entry widget
     
-    def _make_buttons(self):
+    def _make_buttons(self): # Pre-fixed with an _ to show it will only be used as a function within the view class
         """Creation of calculator buttons"""
-        count = 4
+        count = 4 # Setting up a count
         for button in self.BUTTONS_LIST:
-            if count == self.MAX_BUTTONS_PER_ROW:
+            if count == self.MAX_BUTTONS_PER_ROW: # Creating a frame within the main frame for every time a row of buttons must be added
                 frame = ttk.Frame(self.main_frame)
                 frame.pack()
                 count = 0
 
-            btn = ttk.Button(frame, text=button)
+            btn = ttk.Button(frame, text=button) # Adding buttons from the BUTTONS_LIST and increasing count each time
             btn.pack(ipady=self.PAD, side="left")
             count += 1
 
